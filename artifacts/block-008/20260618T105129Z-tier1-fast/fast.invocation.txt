@@ -1,0 +1,9 @@
+tier=fast
+target=check-swift-freebsd-x86_64
+build_dir=/Users/me/wip-rnx/nx-/swift-source-vx-632/build/rnx-vx-swift632-selfhost-install1/swift-freebsd-x86_64
+lit_jobs=32
+watchdog_cpu_seconds=900
+watchdog=/Users/me/wip-rnx/role-gatekeeper/bin/cpu_watchdog
+raw_log=artifacts/block-008/20260618T105129Z-tier1-fast/fast.raw.log
+watchdog_log=artifacts/block-008/20260618T105129Z-tier1-fast/fast.watchdog.log
+command=env LIT_OPTS='-j 32' /Users/me/wip-rnx/role-gatekeeper/bin/cpu_watchdog --cpu-budget-seconds 900 --poll-seconds 5 --status-seconds 60 --log artifacts/block-008/20260618T105129Z-tier1-fast/fast.watchdog.log -- ninja -C /Users/me/wip-rnx/nx-/swift-source-vx-632/build/rnx-vx-swift632-selfhost-install1/swift-freebsd-x86_64 check-swift-freebsd-x86_64

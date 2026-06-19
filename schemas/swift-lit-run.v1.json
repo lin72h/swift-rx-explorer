@@ -1,0 +1,37 @@
+{
+  "schema": "swift-lit-run.v1",
+  "artifact_kind": "schema",
+  "required_fields": [
+    "schema",
+    "artifact_kind",
+    "created_at_utc",
+    "mode",
+    "tier",
+    "run",
+    "repo",
+    "source",
+    "inputs",
+    "tool_versions",
+    "accounting",
+    "tests",
+    "failures_by_subsystem"
+  ],
+  "status_values": [
+    "passed",
+    "failed",
+    "expectedly_failed",
+    "unexpectedly_passed",
+    "unsupported",
+    "hung",
+    "unknown"
+  ],
+  "subsystems": [
+    "Reflection/typeref",
+    "C++ interop",
+    "TSan",
+    "Runtime units",
+    "Macros",
+    "Concurrency/Synchronization",
+    "Misc"
+  ]
+}

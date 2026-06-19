@@ -1,0 +1,47 @@
+{
+  "schema": "provenance-envelope.v1",
+  "artifact_kind": "schema",
+  "required_fields": [
+    "schema",
+    "artifact_kind",
+    "created_at_utc",
+    "mode",
+    "repo",
+    "source",
+    "inputs",
+    "tool_versions"
+  ],
+  "field_policy": {
+    "schema": "name.v<major>",
+    "artifact_kind": "validation|disposition|provenance|coverage|negative_controls",
+    "created_at_utc": "UTC RFC3339 timestamp",
+    "mode": "explorer|gatekeeper",
+    "repo": {
+      "path": "repository path",
+      "head": "source control head or null",
+      "dirty": "boolean"
+    },
+    "source": {
+      "path": "source tree path",
+      "pin": "source pin/tag/commit"
+    },
+    "inputs": [
+      {
+        "path": "input path",
+        "sha256": "hex sha256"
+      }
+    ],
+    "tool_versions": {
+      "elixir": "elixir --version",
+      "otp": "OTP release",
+      "zig": "zig version"
+    }
+  },
+  "gate_specific_additions": [
+    "run_id",
+    "validator_pin",
+    "evidence_path",
+    "raw_digest",
+    "disposition"
+  ]
+}

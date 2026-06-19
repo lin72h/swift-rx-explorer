@@ -1,0 +1,11 @@
+tier=fast
+target=noop-target
+build_dir=/tmp
+lit_jobs=3
+watchdog_cpu_seconds=10
+watchdog=/Users/me/wip-rnx/role-gatekeeper/bin/cpu_watchdog
+ninja=/usr/bin/true
+swiftc=/usr/bin/true
+raw_log=artifacts/block-011/harness-param-smoke/fast.raw.log
+watchdog_log=artifacts/block-011/harness-param-smoke/fast.watchdog.log
+command=env LIT_OPTS='-j 3' /Users/me/wip-rnx/role-gatekeeper/bin/cpu_watchdog --cpu-budget-seconds 10 --poll-seconds 5 --status-seconds 60 --log artifacts/block-011/harness-param-smoke/fast.watchdog.log -- /usr/bin/true -C /tmp noop-target

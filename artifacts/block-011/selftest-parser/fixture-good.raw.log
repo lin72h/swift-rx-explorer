@@ -1,0 +1,13 @@
+-- Testing: 5 tests, 4 workers --
+PASS: Swift(freebsd-x86_64) :: test/Interpreter/basic.swift (1 of 5)
+XFAIL: Swift(freebsd-x86_64) :: validation-test/stdlib/known.swift (2 of 5)
+FAIL: Swift(freebsd-x86_64) :: validation-test/TSan/race.swift (3 of 5)
+UNSUPPORTED: Swift(freebsd-x86_64) :: test/Unsupported/skip.swift (4 of 5)
+XPASS: Swift(freebsd-x86_64) :: validation-test/Macros/now-passing.swift (5 of 5)
+Testing Time: 1.23s
+  Unsupported      : 1
+  Passed           : 1
+  Expectedly Failed: 1
+  Failed           : 1
+  Unexpectedly Passed : 1
+Total Discovered Tests: 5

@@ -1,0 +1,3 @@
+watchdog-start cpu_budget_seconds=900 poll_seconds=5 status_seconds=60 command=ninja -C /Users/me/wip-rnx/nx-/swift-source-vx-632/build/rnx-vx-swift632-selfhost-install1/swift-freebsd-x86_64 check-swift-freebsd-x86_64
+watchdog-child pid=31557 pgid=31557
+watchdog-finish child_pid=31557 exit_code=1 killed_count=0

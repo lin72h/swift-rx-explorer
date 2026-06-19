@@ -1,0 +1,2 @@
+watchdog-kill pid=123 ppid=10 pgid=10 cpu_seconds=901 budget_seconds=900 command=validation-test/stdlib/Synchronization/lock-free-stress.swift
+watchdog-finish child_pid=10 exit_code=124 killed_count=1

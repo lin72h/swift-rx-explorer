@@ -1,0 +1,29 @@
+{
+  "schema": "waiver.v1",
+  "artifact_kind": "waiver",
+  "id": "swift-known-hang-clusters.v1",
+  "owner": "Gatekeeper/Oracle",
+  "status": "provisional-pending-real-run",
+  "reason": "Swift issue #89943 identifies non-deterministic hangs in TSan and stdlib Synchronization lock-free stress tests; exact waived tests must be derived from raw watchdog evidence, not guessed.",
+  "scope": "Swift lit hang classification only; no concrete test is waived until it appears in affected_tests with raw evidence.",
+  "active": false,
+  "provisional_expected_flaky": true,
+  "expiry_or_review_trigger": "Activate only after a real run records specific watchdog-killed tests and Coordinator accepts the waiver scope.",
+  "approved_by": null,
+  "affected_paths": [
+    "validation-test/TSan",
+    "validation-test/stdlib/Synchronization"
+  ],
+  "affected_test_patterns": [
+    "Sanitizers/tsan/**",
+    "stdlib/Synchronization/**",
+    "**/lock-free*",
+    "**/LockSingleConsumerStack*"
+  ],
+  "affected_tests": [],
+  "compensating_checks": [
+    "Watchdog kill log is immutable raw evidence.",
+    "Parser records hung processes separately from lit failures.",
+    "Diff validator treats unbaselined hung tests as regressions."
+  ]
+}

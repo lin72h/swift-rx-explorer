@@ -1,0 +1,34 @@
+Testing Time: 8106.19s
+Total Discovered Tests: 21177
+  Unsupported        :  3283 (15.50%)
+  Passed             : 17813 (84.11%)
+  Expectedly Failed  :    53 (0.25%)
+  Failed             :    26 (0.12%)
+  Unexpectedly Passed :    1 (0.00%)
+
+FAIL: Swift-validation :: Reflection/conformance_descriptors.swift
+FAIL: Swift-validation :: Reflection/typeref_decoding.swift
+FAIL: Swift-validation :: Reflection/typeref_decoding_asan.swift
+FAIL: Swift-validation :: Reflection/typeref_decoding_packs.swift
+FAIL: Swift-validation :: Reflection/typeref_lowering.swift
+FAIL: Swift-validation :: Reflection/typeref_lowering_packs.swift
+FAIL: Swift-validation :: Interop/Cxx/function/default-arguments-multifile.swift
+FAIL: Swift-validation :: Interop/Cxx/stdlib/foundation-and-std-module.swift
+FAIL: Swift-validation :: Interop/Cxx/stdlib/import-cxx-math-ambiguities.swift
+FAIL: Swift-validation :: Interop/Cxx/stdlib/use-std-optional-lib.swift
+FAIL: Swift-validation :: Sanitizers/tsan/libdispatch.swift
+FAIL: Swift-validation :: Sanitizers/tsan/norace-block-release.swift
+FAIL: Swift-validation :: Sanitizers/tsan/norace-deinit-run-time.swift
+FAIL: Swift-validation :: Runtime units/SwiftRuntimeTests shard 10 of 16
+FAIL: Swift-validation :: Runtime units/SwiftRuntimeTests shard 11 of 16
+FAIL: Swift-validation :: Runtime units/SwiftRuntimeTests shard 12 of 16
+FAIL: Swift-validation :: Macros/expand_on_imported.swift
+FAIL: Swift-validation :: Macros/print_clang_expand_on_imported.swift
+FAIL: Swift-validation :: Concurrency/Runtime/cancellation_handler_only_once.swift
+FAIL: Swift-validation :: stdlib/Synchronization/Mutex/LockSingleConsumerStack.swift
+FAIL: Swift-validation :: IRGen/pic.swift
+FAIL: Swift-validation :: Interpreter/generic_casts.swift
+FAIL: Swift-validation :: Runtime/subclass_instance_start_adjustment.swift
+FAIL: Swift-validation :: SILGen/coroutine_accessors_back_deployment_abi.swift
+FAIL: Swift-validation :: Evolution/test_coroutine_accessors.swift
+FAIL: Swift-validation :: Sema/type_checker_perf/fast/swift_docc.swift

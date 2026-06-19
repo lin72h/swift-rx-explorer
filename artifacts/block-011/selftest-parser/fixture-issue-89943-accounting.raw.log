@@ -1,0 +1,7 @@
+Testing Time: 8106.19s
+Total Discovered Tests: 21177
+  Unsupported        :  3283 (15.50%)
+  Passed             : 17813 (84.11%)
+  Expectedly Failed  :    53 (0.25%)
+  Failed             :    26 (0.12%)
+  Unexpectedly Passed :    1 (0.00%)

@@ -1,0 +1,3 @@
+watchdog-start cpu_budget_seconds=10 poll_seconds=1 status_seconds=5 command=/usr/bin/true
+watchdog-child pid=88226 pgid=88226
+watchdog-finish child_pid=88226 exit_code=0 killed_count=0

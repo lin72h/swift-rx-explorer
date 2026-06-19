@@ -1,0 +1,4 @@
+watchdog-start cpu_budget_seconds=0 poll_seconds=1 status_seconds=5 command=/bin/sh -c (while :; do :; done) & wait
+watchdog-child pid=30079 pgid=30079
+watchdog-kill pid=30081 ppid=30079 pgid=30079 cpu_seconds=1 budget_seconds=0 command=/bin/sh -c (while :; do :; done) & wait
+watchdog-finish child_pid=30079 exit_code=124 killed_count=1

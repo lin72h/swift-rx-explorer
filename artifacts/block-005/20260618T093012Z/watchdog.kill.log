@@ -1,0 +1,3 @@
+2026-06-18T09:34:20.676444+00:00 watchdog-start cpu_budget_seconds=900.0
+2026-06-18T09:34:20.677119+00:00 command=/Users/me/wip-rnx/nx-/swift-source-vx-632/workspace/swift/utils/build-script -T -j 32 --lit-jobs 32 --build-subdir rnx-vx-swift632-selfhost-install1 --release --no-swift-stdlib-assertions --build-swift-static-sdk-overlay --build-swift-static-stdlib --skip-build --skip-test-lldb --skip-test-llbuild --skip-test-xctest --skip-test-foundation --skip-test-libdispatch --skip-test-swiftpm --skip-test-swift-driver --skip-test-swiftdocc --skip-test-swiftformat --skip-test-sourcekit-lsp --lit-args=-sv
+2026-06-18T09:34:30.700565+00:00 watchdog-finish returncode=1 killed=[]

@@ -1,0 +1,25 @@
+{
+  "schema": "outcomes.v1",
+  "artifact_kind": "schema",
+  "outcomes": [
+    "pass",
+    "fail",
+    "accepted",
+    "not_accepted",
+    "blocked",
+    "unknown",
+    "parser_missing",
+    "setup_failure_before_candidate",
+    "hard_stop",
+    "attempt_consumed",
+    "non_consumed_attempt"
+  ],
+  "attempt_consumption": [
+    "attempt_consumed",
+    "non_consumed_attempt"
+  ],
+  "notes": [
+    "Producers may emit raw facts.",
+    "Producers must not synthesize acceptance."
+  ]
+}
