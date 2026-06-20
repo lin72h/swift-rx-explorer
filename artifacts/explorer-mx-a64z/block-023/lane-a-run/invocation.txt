@@ -1,0 +1,12 @@
+harness=run_lane_a_probes.zsh
+probe_dir=/Users/linz/Local/swift-rx/swift-rx-explorer/probes/lane-a
+swift_bin=/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
+swift_version=swift-driver version: 1.167 Apple Swift version 6.4 (swiftlang-6.4.0.20.104 clang-2100.3.20.102)
+swift_sha256=2b8614a533f97a45159aa9fbccdbc8dcde8b5e37e2c6c3eeb9684d87365deb57
+host=Darwin mm4.local 27.0.0 Darwin Kernel Version 27.0.0: Wed May 27 02:11:37 PDT 2026; root:xnu-13361.0.0.501.1~2/RELEASE_ARM64_T8132 arm64
+macos=27.0
+git_head=238ccc148a64e933c504eed48f66ae7b25cabd2f
+probe=integer_overflow src_sha256=f5f4f7a636e41df0e207f6a61b5d2f34bd66f1ea33e4f31aa9edb1f3c4a946d9 rc=0
+probe=runtime_metadata src_sha256=9eceaf81241de1fd9810eb6465d3dd7b0ae8c0b2610a4ad459beddaec8eb7738 rc=0
+probe=string_internals src_sha256=c05ac72459e0ecb91b861d4bd6862eaaa18d2b860e688a12add7ca5fe505b0ba rc=0
+probe=type_layout src_sha256=18e299a88489520db88852d1d4bc721b57ea4561191520c3762c974b8012c586 rc=0

@@ -1,0 +1,56 @@
+{
+  "probe_id" : "lane-a.runtime-metadata.v1",
+  "vector_count" : 5,
+  "vectors" : [
+    {
+      "alignment" : 8,
+      "conforms_to_describable" : true,
+      "is_class" : false,
+      "mirror_display_style" : "struct",
+      "probe_id" : "lane-a.runtime-metadata.v1",
+      "size" : 8,
+      "type" : "S1",
+      "witness_desc_result" : "S1(42)"
+    },
+    {
+      "alignment" : 8,
+      "conforms_to_describable" : true,
+      "is_class" : false,
+      "mirror_display_style" : "struct",
+      "probe_id" : "lane-a.runtime-metadata.v1",
+      "size" : 16,
+      "type" : "S2",
+      "witness_desc_result" : "S2"
+    },
+    {
+      "alignment" : 8,
+      "conforms_to_describable" : true,
+      "is_class" : true,
+      "mirror_display_style" : "class",
+      "probe_id" : "lane-a.runtime-metadata.v1",
+      "size" : 8,
+      "type" : "C1",
+      "witness_desc_result" : "C1(7)"
+    },
+    {
+      "alignment" : 1,
+      "conforms_to_describable" : true,
+      "is_class" : false,
+      "mirror_display_style" : "enum",
+      "probe_id" : "lane-a.runtime-metadata.v1",
+      "size" : 1,
+      "type" : "E1",
+      "witness_desc_result" : "E1"
+    },
+    {
+      "alignment" : 8,
+      "conforms_to_describable" : false,
+      "is_class" : false,
+      "mirror_display_style" : "struct",
+      "probe_id" : "lane-a.runtime-metadata.v1",
+      "size" : 8,
+      "type" : "Plain",
+      "witness_desc_result" : "(no witness)"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "swift-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "block": "block-023",
+  "created_at_utc": "2026-06-20T19:40Z",
+  "mode": "explorer",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
+  "lane": "A",
+  "outcome": "reference-captured (accept-grade, self-diffing)",
+  "repo": {"path": "/Users/linz/Local/swift-rx/swift-rx-explorer", "dirty": false},
+  "toolchain": {"swift": "Apple Swift version 6.4 (swiftlang-6.4.0.20.104)", "target": "arm64-apple-macosx27.0.0"},
+  "step_1_expand": {
+    "new_probes": [
+      {"name": "runtime_metadata.swift", "probe_id": "lane-a.runtime-metadata.v1", "vectors": 5, "sha256": "9eceaf81241de1fd9810eb6465d3dd7b0ae8c0b2610a4ad459beddaec8eb7738", "captures": "Mirror displayStyle, is_class, conforms-to-Describable (witness-table presence), witness-dispatch result through a [Describable] existential, size/alignment"},
+      {"name": "string_internals.swift", "probe_id": "lane-a.string-internals.v1", "vectors": 8, "sha256": "c05ac72459e0ecb91b861d4bd6862eaaa18d2b860e688a12add7ca5fe505b0ba", "captures": "grapheme/utf8/utf16/scalar counts, is_ascii, derived estimated_small_string (<=15 utf8 bytes; tag itself not userland-observable without SPI)"}
+    ],
+    "validator_update": "parse_swift_probe_vectors.exs @required extended with the two new probe_ids + required keys (sha256 d0c53e6a...a920bcc). All 4 probes valid; 38 vectors total (20 type_layout + 5 integer_overflow + 5 runtime_metadata + 8 string_internals)."
+  },
+  "step_2_diff": {
+    "tool": "tools/diff_lane_a_vectors.exs (sha256 e8cdc025...48d34669)",
+    "semantics": "value_changed (any load-bearing field delta) + missing_vector = regressions; new_vector = observed non-regressing",
+    "per_probe_compare_fields": {
+      "lane-a.type-layout.v1": "[size,stride,alignment] keyed by type",
+      "lane-a.integer-overflow.v1": "[checked_value,checked_overflow,wrapped_value] keyed by expr",
+      "lane-a.runtime-metadata.v1": "[mirror_display_style,is_class,conforms_to_describable,witness_desc_result,size,alignment] keyed by type",
+      "lane-a.string-internals.v1": "[char_count,utf8_count,utf16_count,scalar_count,is_empty,is_ascii,estimated_small_string] keyed by label"
+    },
+    "negative_controls": {"evidence": "artifacts/explorer-mx-a64z/block-023/negative-controls/diff-lane-a-vectors.negative-controls.v1.json", "sha256": "0032890f...65ccd725", "cases": ["value_changed_size_delta (fail)", "missing_vector (fail)", "identical_passes (pass)"], "passed": true}
+  },
+  "step_3_banked": {
+    "baseline": "artifacts/explorer-mx-a64z/block-023/lane-a-baseline.v1.json",
+    "sha256": "c8afcc18f0a36213be2825db334be3a57da03ece477f0b771e3804b8067fa95a",
+    "schema": "swift-r64z.lane-a-baseline.v1",
+    "provisional": false,
+    "accept_grade_eligible": true,
+    "negative_control_proven": true,
+    "expected_probe_ids": ["lane-a.integer-overflow.v1", "lane-a.runtime-metadata.v1", "lane-a.string-internals.v1", "lane-a.type-layout.v1"],
+    "expected_total_vectors": 38,
+    "self_diff_baseline_vs_source": "pass (rc=0)",
+    "expanded_vectors_sha256": "2af860e0074ebe818833ef6e14f1e2bbc4ccde2ddcfb6c80b99945a7840de59d"
+  },
+  "observations": [
+    "Witness dispatch is genuinely exercised: routing the Describable requirement through a [Describable] existential returns per-type results (S1(42), S2, C1(7), E1); Plain (non-conforming) has no witness. is_class tracks Mirror displayStyle==.class.",
+    "String vectors capture grapheme-vs-scalar splits that are parity-load-bearing: woman_technologist_zwj=1 char/4 scalars/15 utf8, flag_us=1 char/2 scalars/8 utf8; ascii_16 crosses the 15-byte inline threshold (estimated_small_string=false).",
+    "Shell orchestrates only (run_lane_a_probes.zsh); all JSON assembly/diff in Elixir, per block-017's correction."
+  ],
+  "never_dispositioned": true,
+  "next_hop": "next Lane A expansion (e.g. concurrency/atomic layout is Lane B, gated) | rx-side parity (gated on block-016)"
+}

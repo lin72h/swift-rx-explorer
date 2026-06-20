@@ -14,7 +14,11 @@ defmodule SwiftGate.ParseProbeVectors do
     "lane-a.type-layout.v1" =>
       MapSet.new(["probe_id", "type", "kind", "size", "stride", "alignment"]),
     "lane-a.integer-overflow.v1" =>
-      MapSet.new(["probe_id", "expr", "checked_value", "checked_overflow", "wrapped_value"])
+      MapSet.new(["probe_id", "expr", "checked_value", "checked_overflow", "wrapped_value"]),
+    "lane-a.runtime-metadata.v1" =>
+      MapSet.new(["probe_id", "type", "mirror_display_style", "is_class", "conforms_to_describable", "witness_desc_result", "size", "alignment"]),
+    "lane-a.string-internals.v1" =>
+      MapSet.new(["probe_id", "label", "char_count", "utf8_count", "utf16_count", "scalar_count", "is_empty", "is_ascii", "estimated_small_string"])
   }
 
   def main(["--self-test", tmpdir]) do

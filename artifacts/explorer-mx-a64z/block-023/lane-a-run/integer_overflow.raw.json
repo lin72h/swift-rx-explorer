@@ -1,0 +1,41 @@
+{
+  "probe_id" : "lane-a.integer-overflow.v1",
+  "vector_count" : 5,
+  "vectors" : [
+    {
+      "checked_overflow" : true,
+      "checked_value" : -9223372036854775808,
+      "expr" : "Int.max +&+ 1",
+      "probe_id" : "lane-a.integer-overflow.v1",
+      "wrapped_value" : -9223372036854775808
+    },
+    {
+      "checked_overflow" : true,
+      "checked_value" : -2,
+      "expr" : "Int.max +&+ Int.max",
+      "probe_id" : "lane-a.integer-overflow.v1",
+      "wrapped_value" : -2
+    },
+    {
+      "checked_overflow" : true,
+      "checked_value" : 9223372036854775807,
+      "expr" : "Int.min -&- 1",
+      "probe_id" : "lane-a.integer-overflow.v1",
+      "wrapped_value" : 9223372036854775807
+    },
+    {
+      "checked_overflow" : true,
+      "checked_value" : 9223372036854775803,
+      "expr" : "5 *&* Int.max",
+      "probe_id" : "lane-a.integer-overflow.v1",
+      "wrapped_value" : 9223372036854775803
+    },
+    {
+      "checked_overflow" : false,
+      "checked_value" : 9223372036854775807,
+      "expr" : "Int.max +&+ 0 (control)",
+      "probe_id" : "lane-a.integer-overflow.v1",
+      "wrapped_value" : 9223372036854775807
+    }
+  ]
+}

@@ -30,4 +30,8 @@ Changelog:
 - `swift-r64z-lane-a-vectors.v1`: proposed by explorer-mx-a64z (block-017) for
   Lane A substrate behavior probe vectors (ABI/runtime/stdlib). Producer
   output assembled by parse_swift_probe_vectors.exs. Pending gatekeeper
-  ratification; additive.
+  ratification; additive. (Renamed from sx-r64z-lane-a-vectors.v1 in block-022.)
+- `swift-r64z-lane-a-baseline.v1` / `swift-r64z-lane-a-diff.v1`: proposed by
+  explorer-mx-a64z (block-023). The Lane A accept-grade baseline (from
+  make_lane_a_baseline.exs) and the vector regression-diff (from
+  diff_lane_a_vectors.exs). Pending gatekeeper ratification; additive.

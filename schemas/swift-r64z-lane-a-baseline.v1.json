@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://swift-rx/schemas/swift-r64z-lane-a-baseline.v1.json",
+  "title": "Lane A vector regression baseline (swift-r64z)",
+  "description": "Accept-grade-eligible Lane A baseline derived from a lane-a-vectors.v1 by make_lane_a_baseline.exs. Carries probes/vectors so diff_lane_a_vectors.exs diffs it unchanged. Proposed by explorer-mx-a64z (block-023); pending gatekeeper ratification. Explorer marks accept_grade_eligible; not an acceptance disposition.",
+  "type": "object",
+  "required": ["schema", "artifact_kind", "created_at_utc", "mode", "namespace", "lane", "probes", "aggregate", "baseline"],
+  "properties": {
+    "schema": {"type": "string", "const": "swift-r64z.lane-a-baseline.v1"},
+    "artifact_kind": {"type": "string", "const": "validation"},
+    "disposition_authority": {"type": "string"},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "mode": {"type": "string", "enum": ["explorer", "gatekeeper"]},
+    "namespace": {"type": "string"},
+    "lane": {"type": "string", "const": "A"},
+    "probes": {"type": "array"},
+    "aggregate": {"type": "object"},
+    "baseline": {
+      "type": "object",
+      "required": ["provisional", "accept_grade_eligible", "negative_control_proven", "source_vectors_json", "source_vectors_json_sha256"],
+      "properties": {
+        "provisional": {"type": "boolean"},
+        "accept_grade_eligible": {"type": "boolean"},
+        "negative_control_proven": {"type": "boolean"},
+        "negative_control_evidence": {"type": "array"},
+        "source_vectors_json": {"type": "string"},
+        "source_vectors_json_sha256": {"type": "string"},
+        "expected_probe_ids": {"type": "array"},
+        "expected_total_vectors": {"type": "integer"},
+        "waivers": {"type": "array"}
+      }
+    },
+    "toolchain": {"type": "object"},
+    "tool_versions": {"type": "object"},
+    "host": {"type": "object"},
+    "repo": {"type": "object"}
+  }
+}
