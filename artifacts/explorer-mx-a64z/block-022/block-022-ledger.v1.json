@@ -1,0 +1,64 @@
+{
+  "schema": "swift-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "block": "block-022",
+  "created_at_utc": "2026-06-20T19:10Z",
+  "mode": "explorer",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
+  "outcome": "reference-captured (canonical on main)",
+  "repo": {
+    "path": "/Users/linz/Local/swift-rx/swift-rx-explorer",
+    "main_head": "d3b51cec01f3b479efc10764e1025831ecc897be",
+    "dirty": false,
+    "origin_main_ahead_by": 4,
+    "pushed": false
+  },
+  "steps": {
+    "1_rename": {
+      "what": "sx-r64z -> swift-r64z (no abbreviation) across all explorer-mx-a64z artifacts/schemas/tools.",
+      "touched": [
+        "schemas/sx-r64z-lane-a-vectors.v1.json -> schemas/swift-r64z-lane-a-vectors.v1.json ($id/title/const)",
+        "tools/parse_swift_probe_vectors.exs (emitted schema + namespace + comments)",
+        "artifacts/explorer-mx-a64z/mx-a64z-ledger.v1.json (schema, contract_ns)",
+        "artifacts/explorer-mx-a64z/host-reference.raw.txt (contract namespace line)",
+        "artifacts/explorer-mx-a64z/block-017/* (schema, namespace; regenerated lane-a-vectors.v1.json + NC; ledger hashes refreshed)",
+        "schemas/README.md changelog"
+      ],
+      "block_018_021": "already used swift-r64z; unchanged",
+      "sx_r64z_residue_in_files": "none (grep-confirmed)"
+    },
+    "2_merge": {
+      "method": "fast-forward (branch is a linear descendant of main)",
+      "merge_point": "main -> d3b51ce (no merge commit; linear history)",
+      "commits_brought_to_main": ["fe90b2e block-000/018", "feb103c block-021", "2b87009 block-017", "d3b51ce rename"],
+      "canonical_now_on_main": [
+        "swift-testing accept-grade baseline (block-021)",
+        "Lane A seed batch (block-017)",
+        "block-000/018 reference + rebuilt watchdog"
+      ],
+      "push": "not performed — user asked for merge, not push; local main is canonical and 4 commits ahead of origin/main"
+    },
+    "3_verify_on_main": {
+      "swift_testing_baseline_vs_source_diff": {"result": "pass", "return_code": 0, "regressions": 0},
+      "validator_self_tests_all_rc0": {
+        "parse_swift_lit": "passed=true",
+        "parse_swift_testing": "passed=true",
+        "diff_swift_regression": "passed=true",
+        "parse_swift_probe_vectors": "passed=true"
+      },
+      "lane_a_reference_revalidate": {"schema": "swift-r64z.lane-a-vectors.v1", "all_valid": true, "total_vectors": 25}
+    }
+  },
+  "canonical_references_on_main": {
+    "swift_testing_baseline": "artifacts/explorer-mx-a64z/block-021/swift-testing-baseline.v1.json (accept-grade, diffable, NC-proven)",
+    "lane_a_vectors": "artifacts/explorer-mx-a64z/block-017/lane-a-run/lane-a-vectors.v1.json (sha256 108c32e8...f5a3c1)",
+    "future_diffs_key_off": "main, not explorer-mx-a64z/swift-testing-reference"
+  },
+  "observations": [
+    "Historical commit messages still contain 'sx-r64z' (e.g. 2b87009 subject '...(sx-r64z seed batch)'). These are immutable history records of what those commits were at the time, not renamed; all FILES on main are canonical swift-r64z. Rewriting local-only history to clean messages is a separate decision (not done).",
+    "Local main is 4 commits ahead of origin/main; not pushed. The rx parity compare and future diffs key off local main per the task."
+  ],
+  "never_dispositioned": true,
+  "next_hop": "block-023: expand Lane A probe set + vector regression-diff"
+}
