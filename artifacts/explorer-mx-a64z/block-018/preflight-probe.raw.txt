@@ -1,0 +1,52 @@
+# block-018 preflight probe — raw evidence (immutable primary)
+# Captured by: swift-rx-explorer (explorer, mode=reference-capture, no disposition)
+# Captured at (UTC): 2026-06-20T01:50Z
+# Deployment: swift-rx-explorer-mx-a64z   Namespace: swift-r64z / mx-a64z
+# Question: can build-script -T / swift-testing run on macOS-27 AS-IS with what is on mm4?
+
+## block-018 premise check
+# premise A "macOS Swift is native (toolchain)"      -> TRUE
+# premise B "build-script -T is native (source tree)" -> FALSE  <-- blocker
+# build-script and the lit graph belong to the Swift SOURCE project (swift/utils/build-script,
+# swift/test, swift/validation-test), NOT to any installed toolchain. No source tree exists here.
+
+## PATH entry points
+build-script = (not in PATH)
+swift        = /usr/bin/swift
+swiftc       = /usr/bin/swiftc
+llvm-lit     = (not in PATH)
+lit          = (not in PATH)
+ninja        = (not in PATH)        # run_swift_gate.zsh hard-requires ninja
+ctest        = /Users/linz/Local/bin/ctest
+cmake        = /Users/linz/Local/bin/cmake
+
+## xcrun --find (bundled toolchains)
+swift        = /Library/Developer/Toolchains/swift-6.1-DEVELOPMENT-SNAPSHOT-2024-12-20-a.xctoolchain/usr/bin/swift
+swiftc       = .../swift-6.1-DEVELOPMENT-SNAPSHOT-2024-12-20-a.xctoolchain/usr/bin/swiftc
+build-script = (xcrun: not found)
+llvm-lit     = (xcrun: not found)
+lit          = (xcrun: not found)
+# Two 6.1-dev toolchains present: Xcode-beta default (xcode-select -p) + swift.org snapshot.
+# Neither ships utils/build-script, test/, validation-test/, or llvm-lit.
+
+## toolchain versions (what we DO have)
+swift --version = Apple Swift version 6.1-dev (LLVM 38c9bd4e92f23a7, Swift 91c6425a54ae3b3)
+                  Target: arm64-apple-macosx18.0
+
+## machine-wide source-tree scan (Spotlight mdfind = whole boot volume; authoritative)
+mdfind -name build-script   (grep utils/build-script) = 0 hits
+mdfind -name llvm-lit                                 = 1 hit (vim ftplugin only; not a runner)
+mdfind -name validation-test                          = 1 hit (unrelated DefaultsValidationTests.swift)
+mdfind -name swift-testing                            = 0 hits
+mdfind CMakeLists.txt (grep swift/test|swift-source)  = 0 hits
+find /Users/linz -maxdepth 8 (build-script|validation-test) = 0 hits
+
+## SwiftPM (for the swift-testing alternative)
+swift package = available (SwiftPM present)   # but NO swift-testing checkout exists locally
+
+## conclusion
+# No Swift compiler source tree, no build-script, no llvm-lit, no ninja, no swift-testing checkout.
+# build-script -T CANNOT be invoked on mm4. The "existing Swift suite" (compiler lit graph) is
+# owned by host bdw-fx15-x64z (FreeBSD), not present here. Nothing runnable AS-IS.
+# Attempt classified: non-consumed setup failure BEFORE candidate markers (no lit "-- Testing:"
+# line ever produced). Per evidence discipline: no baseline synthesized from absence.

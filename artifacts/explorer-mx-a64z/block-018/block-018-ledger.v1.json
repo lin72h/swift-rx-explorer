@@ -1,0 +1,58 @@
+{
+  "schema": "swift-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "block": "block-018",
+  "created_at_utc": "2026-06-20T17:56Z",
+  "mode": "explorer",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
+  "outcome": "partial: swift-testing=reference-captured; compiler-lit(build-script -T)=not-ready",
+  "repo": {
+    "path": "/Users/linz/Local/swift-rx/swift-rx-explorer",
+    "head": "567a0538bff45d443f8bd29316cf2bafffdd0fb1",
+    "dirty": true
+  },
+  "toolchain": {
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.20.104), target arm64-apple-macosx27.0.0",
+    "swift_bin": "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift",
+    "swift_sha256": "2b8614a533f97a45159aa9fbccdbc8dcde8b5e37e2c6c3eeb9684d87365deb57",
+    "note": "User correction applied: Xcode-beta 27 default is Swift 6.4. Earlier 6.1-dev reading was TOOLCHAINS=swift shadowing XcodeDefault; bypassed via direct binary + env -u TOOLCHAINS."
+  },
+  "harness_adaptation_for_mx_a64z": {
+    "issue": "Checked-in bin/cpu_watchdog is ELF x86-64 FreeBSD 15.0 (exec-format error on macOS arm64).",
+    "fix": "Rebuilt from tools/cpu_watchdog.zig as bin/cpu_watchdog-mx-a64z (Mach-O arm64) with pinned zig 0.16.0 -O ReleaseSafe.",
+    "validation": "Finish-path: exit 0 killed_count=0. Kill-path: enforced budget on a forked grandchild (watchdog-kill ... cpu_seconds=5 budget_seconds=4 -> exit 124 killed_count=1). Watchdog only enforces on grandchildren (skips direct child) per original lit/ninja design.",
+    "watchdog_bin_sha256": "daf4c6722d002d6cb97205a8ae6778ae0416bbda8599f51ad824cc9d7d6d12ac"
+  },
+  "dimensions": {
+    "swift-testing": {
+      "status": "reference-captured",
+      "reference": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing-reference.v1.json",
+      "run_dir": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/",
+      "result": "591 tests (550+41) in 76 suites, 0 failures, rc=0; watchdog clean (no hangs)",
+      "provisional_baseline": true,
+      "raw_log_sha256": "51693f923db89e66d7c3f05273b540a2c89fdb5fcae568f5ba589913d564129b"
+    },
+    "compiler-lit": {
+      "status": "not-ready",
+      "blocker": "BLOCK-018-no-source-tree",
+      "reason": "build-script -T and the lit graph live in the Swift SOURCE project, not any toolchain. No source tree / build-script / llvm-lit / ninja on mm4. 6.4 toolchain does not change this."
+    }
+  },
+  "ledger_chain": {
+    "swift-testing": "swift-testing-suite -> regression-baseline(provisional) -> reference-captured",
+    "compiler-lit": "swift-suite(NOT-RUNNABLE on mx-a64z) -/-> regression-baseline -/-> reference-captured  [stuck at swift-suite]",
+    "block_018_aggregate": "partial"
+  },
+  "inputs": [
+    {"path": "artifacts/explorer-mx-a64z/block-018/preflight-probe.raw.txt", "sha256": "0e2400576a470026bc139dfd3e6bdeda3acf33a128dc657ce5a09bfd61b6c6d8"},
+    {"path": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing-reference.v1.json", "sha256": "84d936fc733d9b689dde51c590834496dafdb9c28da53b52a3423e936da03bcc"},
+    {"path": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing.raw.log", "sha256": "51693f923db89e66d7c3f05273b540a2c89fdb5fcae568f5ba589913d564129b"}
+  ],
+  "never_dispositioned": true,
+  "deferred": [
+    "Dedicated swift-testing Elixir parser + negative controls (required before parser can support acceptance).",
+    "Compiler lit suite needs a Swift source tree + macOS-arm64 test-enabled build + ninja.",
+    "rmxOS parity (rx-x64z) still gated on block-016."
+  ]
+}

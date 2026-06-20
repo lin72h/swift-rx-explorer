@@ -1,0 +1,70 @@
+{
+  "schema": "sx-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "created_at_utc": "2026-06-20T01:41Z",
+  "mode": "explorer",
+  "host_ns": "mx-a64z",
+  "contract_ns": "sx-r64z",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "iteration": "block-000-first-iteration",
+  "repo": {
+    "path": "/Users/linz/Local/swift-rx/swift-rx-explorer",
+    "head": "567a0538bff45d443f8bd29316cf2bafffdd0fb1",
+    "dirty": true
+  },
+  "tool_versions": {
+    "elixir": "Elixir 1.20.0 (compiled with Erlang/OTP 28)",
+    "otp": "29",
+    "zig": "0.16.0",
+    "ninja": "MISSING",
+    "swift": "Apple Swift version 6.1-dev (arm64-apple-macosx18.0)",
+    "macos": "27.0 (Build 26A5353q, kernel xnu-13361.0.0.501~2 RELEASE_ARM64_T8132)"
+  },
+  "inputs": [
+    {"path": "artifacts/explorer-mx-a64z/host-reference.raw.txt", "sha256": "dbc55fb2b8e6c2817329d283593471b122a7e281382995b21587a85e64225646"},
+    {"path": "artifacts/explorer-mx-a64z/parse-swift-lit.negative-controls.v1.json", "sha256": "490b3653185c72bfc4ceff64ff3f8a8eb1e040f798f52ad634c12ad1c2daefcd"},
+    {"path": "artifacts/explorer-mx-a64z/diff-swift-regression.negative-controls.v1.json", "sha256": "c96716ca9df8bbb1f2790f35d791212f263f8ea4f08e2202f2c6229e50a4d564"}
+  ],
+  "validator_pins": {
+    "parse_swift_lit.exs": "b24d8621c22cd7ff8363be1edf38f3383d5f52cdf118ff6685d36bb72620ce84",
+    "diff_swift_regression.exs": "a800be97d1ea466d1950930737b3f4cc22cc9868f50a3ea401a3b224f3481cef"
+  },
+  "proven": {
+    "observation_harness_sound_on_mx_a64z": {
+      "claim": "Lit-accounting parser and regression-diff validator fail closed on macOS-27 under pinned Elixir 1.20.0 / OTP 29.",
+      "evidence": "both --self-test runs exited 0 with passed=true; missing_accounting_not_synthesized control failed closed; all red-path diff controls failed; all green-path controls passed.",
+      "never_dispositions": true
+    },
+    "block_016_dep_present_on_mx_a64z": {
+      "claim": "/usr/lib/swift runtime is deployed natively on macOS-27 (13 entries), so the rmxOS block-016 dependency has a macOS-27 reference surface.",
+      "evidence": "host-reference.raw.txt"
+    }
+  },
+  "open_obligations": [
+    {
+      "id": "BLOCK-lit-suite-no-source-build",
+      "status": "blocked",
+      "severity": "blocker",
+      "requirement": "Produce a macOS-27 (arm64) test-enabled Swift compiler build with a ninja graph, OR confirm the existing lit-suite baseline is owned by bdw-fx15-x64z and not in scope for mx-a64z.",
+      "root_cause": "swift-rx-explorer-mx-a64z has only the Xcode-beta BUNDLED toolchain (swift 6.1-dev). There is NO Swift source tree and NO check-swift-* ninja graph on this host. run_swift_gate.zsh hard-requires (a) ninja (MISSING), (b) a build dir (default points at bdw-fx15-x64z: /Users/me/wip-rnx/.../swift-freebsd-x86_64, MISSING), and (c) a target currently hardcoded to check-swift-freebsd-x86_64 (FreeBSD x86_64, not macOS arm64).",
+      "smallest_falsifiable_requirements": [
+        "A Swift source pin + test-enabled CMake/ninja build dir on mm4 exposing an arm64 macOS lit target (e.g. check-swift-macos-arm64 / check-swift-all-macos-arm64); confirm exact target names via ninja -t targets.",
+        "ninja installed on mm4 (currently MISSING).",
+        "run_swift_gate.zsh tier->target map extended for macOS arm64, or --target passed explicitly.",
+        "swiftc path + sha256 + version for the staged 6.x toolchain recorded in provenance."
+      ],
+      "disposition": "none — explorer does not dispose; no baseline synthesized from absence"
+    }
+  ],
+  "observations": [
+    "Chip reports Apple M4 (kernel label RELEASE_ARM64_T8132). a64z = Apple-silicon arm64 ISA family, so the ISA-level namespace holds; the specific die is M4/T8132, not M1. Flagging the onboarding's 'Apple-M1 ISA' wording as die-imprecise.",
+    "Pinned tool versions match TESTING_STRATEGY.md baseline exactly: elixir 1.20.0, OTP 29, zig 0.16.0.",
+    "Existing artifact artifacts/block-008/.../fast.run.json shows the FreeBSD host run was itself a non-consumed setup failure (lit_started=false, lit_accounting_present=false, rc=1) — the lit graph never started there either, so no accepted baseline exists in-repo yet.",
+    "Corelibs dimension (docs/CORELIBS_DIMENSION_DESIGN.md) remains design-only; not in scope this iteration."
+  ],
+  "deferred": [
+    "Lane A behavior probes (Zig/Elixir substrate probes) — next batch, gated on a runnable suite.",
+    "Lane B concurrency/XPC — gated on foundation solidity.",
+    "rmxOS parity (swift-rx-explorer-rx-x64z) — gated on block-016 (/usr/lib/swift) + runtime solidity."
+  ]
+}

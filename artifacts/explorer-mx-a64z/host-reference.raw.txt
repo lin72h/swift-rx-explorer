@@ -1,0 +1,39 @@
+# mx-a64z host + toolchain reference — raw evidence (immutable primary)
+# Captured by: swift-rx-explorer (explorer, mode=reference-capture, no disposition)
+# Captured at (UTC): 2026-06-20T01:40Z
+# Host namespace: mx-a64z   Contract namespace: sx-r64z
+# Repo head: 567a0538bff45d443f8bd29316cf2bafffdd0fb1   dirty: false
+
+## host identity
+uname -a          = Darwin mm4.local 27.0.0 Darwin Kernel Version 27.0.0: Wed May 27 02:11:37 PDT 2026; root:xnu-13361.0.0.501~2/RELEASE_ARM64_T8132 arm64
+sw_vers           = ProductName: macOS  ProductVersion: 27.0  BuildVersion: 26A5353q
+uname -r (kernel) = 27.0.0
+uname -m (arch)   = arm64
+machdep.cpu       = Apple M4   (kernel build label: RELEASE_ARM64_T8132)
+
+## swift toolchain (block-016 dep is the deployed /usr/lib/swift runtime)
+swift             = /usr/bin/swift
+swift --version   = Apple Swift version 6.1-dev (LLVM 38c9bd4e92f23a7, Swift 91c6425a54ae3b3)
+                    Target: arm64-apple-macosx18.0
+xcode-select -p   = /Applications/Xcode-beta.app/Contents/Developer
+target_triple     = arm64-apple-macosx18.0
+swiftc_sha256     = c55485710bbc05a7186b5980044d916f6665d3630ead04f10c4a675f81289eaa
+note              = Xcode-beta BUNDLED toolchain. NOT a source build. No check-swift-* ninja graph.
+
+## pinned tools (TESTING_STRATEGY.md baseline: elixir 1.20.x, OTP 29.x, zig 0.16.x)
+elixir            = Elixir 1.20.0 (compiled with Erlang/OTP 28)
+otp               = Erlang/OTP 29 [erts-17.0]
+zig               = 0.16.0
+cmake             = /Users/linz/Local/bin/cmake (version probe empty in non-tty; binary present)
+ninja             = MISSING  (run_swift_gate.zsh hard-requires ninja; absent on mm4)
+
+## /usr/lib/swift inventory (block-016 rmxOS dep — present natively on macOS-27)
+entries (13)      = libswiftCompatibilitySpan.dylib libswiftCreateML.dylib libswiftIdentityLookup.dylib
+                    libswiftMetricKit.dylib libswiftNetwork.dylib libswiftPhotos.dylib libswiftPhotosUI.dylib
+                    libswiftRemoteMirror.dylib libswiftShazamKit.dylib libswiftSoundAnalysis_Private.dylib
+                    libswiftSoundAnalysis.dylib libswiftVirtualization.dylib playgrounds
+
+## gate build-dir preflight
+default build_dir = /Users/me/wip-rnx/nx-/swift-source-vx-632/build/rnx-vx-swift632-selfhost-install1/swift-freebsd-x86_64
+status            = MISSING on mm4 (belongs to host bdw-fx15-x64z / FreeBSD 15.0 x86_64)
+swift source tree = NONE found under /Users/linz /opt /Volumes (no utils/build-script marker)

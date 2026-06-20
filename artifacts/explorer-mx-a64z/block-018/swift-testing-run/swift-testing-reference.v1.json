@@ -1,0 +1,82 @@
+{
+  "schema": "swift-r64z.swift-testing-run.v1",
+  "artifact_kind": "validation",
+  "disposition_authority": "none — explorer captures raw facts; this is NOT a gatekeeper pass/accept disposition",
+  "created_at_utc": "2026-06-20T17:55Z",
+  "mode": "explorer",
+  "block": "block-018",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
+  "dimension": "swift-testing (corelibs)",
+  "role_in_block_018": "macOS-27 reference vector + provisional regression baseline (toolchain-did-not-regress)",
+  "repo": {
+    "path": "/Users/linz/Local/swift-rx/swift-rx-explorer",
+    "head": "567a0538bff45d443f8bd29316cf2bafffdd0fb1",
+    "dirty": true
+  },
+  "source": {
+    "suite": "apple/swift-testing",
+    "pin": "4b2d2945d2072a547f9004066f832b7fd10a00d6",
+    "pin_subject": "Remove legacy test content discovery. (#1013)",
+    "staged_at": "/tmp/swift-r64z-work/swift-testing"
+  },
+  "host": {
+    "os": "macOS 27.0 (Build 26A5353q)",
+    "kernel": "Darwin 27.0.0 xnu-13361.0.0.501~2 RELEASE_ARM64_T8132",
+    "arch": "arm64 (Apple M4)",
+    "host_ns": "mx-a64z"
+  },
+  "toolchain": {
+    "swift_version": "Apple Swift version 6.4 (swiftlang-6.4.0.20.104 clang-2100.3.20.102)",
+    "target_triple": "arm64-apple-macosx27.0.0",
+    "swift_bin": "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift",
+    "swift_sha256": "2b8614a533f97a45159aa9fbccdbc8dcde8b5e37e2c6c3eeb9684d87365deb57",
+    "note": "Xcode-beta 27 XcodeDefault toolchain. TOOLCHAINS=swift (6.1-dev snapshot) was bypassed via direct binary + env -u TOOLCHAINS."
+  },
+  "tool_versions": {
+    "elixir": "1.20.0",
+    "otp": "29",
+    "zig": "0.16.0",
+    "watchdog_src_sha256": "3c1e92ef4c98a3ac4b88b3a7276da14d736f04c4701acc80aee6876eddbec417",
+    "watchdog_bin_sha256": "daf4c6722d002d6cb97205a8ae6778ae0416bbda8599f51ad824cc9d7d6d12ac",
+    "watchdog_note": "bin/cpu_watchdog is FreeBSD/x86-64 ELF; rebuilt from tools/cpu_watchdog.zig as bin/cpu_watchdog-mx-a64z (Mach-O arm64) with zig 0.16.0 -O ReleaseSafe. Kill-path + finish-path validated on macOS arm64."
+  },
+  "invocation": "env -u TOOLCHAINS <xcodedefault>/usr/bin/swift test  (cwd=/tmp/swift-r64z-work/swift-testing)",
+  "watchdog": {
+    "command": "cpu_watchdog-mx-a64z --cpu-budget-seconds 1800 --poll-seconds 5 --status-seconds 30 -- <swift> test",
+    "policy": "hang=failure (block-018)",
+    "finish": "exit_code=0 killed_count=0",
+    "log_sha256": "294e786acc0679ce024b469b512d0a4a9b6f307b55de60889d0a84d0bd9222b4"
+  },
+  "run": {
+    "return_code": 0,
+    "attempts": 1,
+    "attempt_consumed": true,
+    "lit_accounting_present": false,
+    "note": "swift-testing emits NATIVE output (✔/✘/◇ + 'Test run with N tests...'), NOT lit accounting. parse_swift_lit.exs does not apply."
+  },
+  "accounting_observed_from_raw": {
+    "runs": [
+      {"tests": 550, "suites": 71, "result": "passed", "duration_seconds": 3.625, "product": "TestingTests.xctest"},
+      {"tests": 41, "suites": 5, "result": "passed", "duration_seconds": 0.934, "product": "TestingMacrosTests"}
+    ],
+    "totals": {"tests": 591, "suites": 76, "failed": 0, "unexpectedly_passed": null},
+    "real_failure_markers": 0,
+    "raw_fact_basis": "rc=0; grep '^✘' count=0; per-run 'Test run with N tests ... passed' summaries"
+  },
+  "inputs": [
+    {"path": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing.raw.log", "sha256": "51693f923db89e66d7c3f05273b540a2c89fdb5fcae568f5ba589913d564129b", "bytes": 259461, "lines": 2432},
+    {"path": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing.watchdog.log", "sha256": "294e786acc0679ce024b469b512d0a4a9b6f307b55de60889d0a84d0bd9222b4"},
+    {"path": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing.invocation.txt", "sha256": "441f1644917b3683cf2325ffc1b7bd2e4bdc966ff61a22ca56b29bb4c33df987"}
+  ],
+  "observations": [
+    "Swift 6.4 builds swift-testing + swift-syntax + macOS platform integration clean (939 build steps, ~51s) and the full suite passes (591 tests, 0 failures) on macOS-27 arm64. No regressions observed vs an implicit clean baseline.",
+    "Scan hits for 'failed'/'error' in the raw log are FALSE POSITIVES: parameterized test names that exercise swift-testing's own failure-reporting (e.g. testName='f()', expectedPattern='...failed after...'). Real failure markers (^✘) = 0; rc=0.",
+    "Captured dimension is swift-testing (the testing framework's own suite), NOT the Swift compiler lit graph. It does not reconcile with the FreeBSD check-swift-freebsd-x86_64 baseline."
+  ],
+  "deferred": [
+    "Dedicated swift-testing Elixir parser + negative controls: deferred (required before a parser can support acceptance). This artifact is raw-fact capture only.",
+    "Compiler lit suite (build-script -T / check-swift-macos-arm64): still blocked — no Swift source tree on mm4 (see block-018-ledger BLOCK-018-no-source-tree). 6.4 is a toolchain, not a source tree.",
+    "rmxOS parity (rx-x64z): still gated on block-016."
+  ]
+}

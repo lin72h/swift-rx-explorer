@@ -1,0 +1,10 @@
+block=block-018
+deployment=swift-rx-explorer-mx-a64z
+namespace=swift-r64z / mx-a64z
+suite=apple/swift-testing @ 4b2d2945d2072a547f9004066f832b7fd10a00d6
+toolchain=XcodeDefault.xctoolchain Swift 6.4 (swiftlang-6.4.0.20.104) target=arm64-apple-macosx27.0.0
+swift_bin=/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
+swift_sha256=2b8614a533f97a45159aa9fbccdbc8dcde8b5e37e2c6c3eeb9684d87365deb57
+package_dir=/tmp/swift-r64z-work/swift-testing
+command=env -u TOOLCHAINS /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift test
+watchdog=/Users/linz/Local/swift-rx/swift-rx-explorer/bin/cpu_watchdog-mx-a64z --cpu-budget-seconds 1800 --poll-seconds 5 --status-seconds 30 (hang=failure)
