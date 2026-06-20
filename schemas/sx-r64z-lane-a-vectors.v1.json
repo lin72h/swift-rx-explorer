@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://swift-rx/schemas/sx-r64z-lane-a-vectors.v1.json",
+  "title": "Lane A substrate behavior vectors (sx-r64z)",
+  "description": "Validated set of macOS-27 Swift substrate behavior probe vectors (ABI/runtime/stdlib). Producer output assembled by parse_swift_probe_vectors.exs from per-probe raw JSON. Proposed by explorer-mx-a64z (block-017); pending gatekeeper ratification.",
+  "type": "object",
+  "required": ["schema", "artifact_kind", "created_at_utc", "mode", "namespace", "lane", "probes", "aggregate"],
+  "properties": {
+    "schema": {"type": "string", "const": "sx-r64z.lane-a-vectors.v1"},
+    "artifact_kind": {"type": "string", "const": "validation"},
+    "disposition_authority": {"type": "string"},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "mode": {"type": "string", "enum": ["explorer", "gatekeeper"]},
+    "namespace": {"type": "string"},
+    "lane": {"type": "string", "const": "A"},
+    "run_dir": {"type": "string"},
+    "probes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "probe_id", "valid", "issues", "vectors"],
+        "properties": {
+          "name": {"type": "string"},
+          "probe_id": {"type": ["string", "null"]},
+          "source_sha256": {"type": ["string", "null"]},
+          "return_code": {"type": ["integer", "null"]},
+          "valid": {"type": "boolean"},
+          "vector_count": {"type": ["integer", "null"]},
+          "observed_vector_count": {"type": ["integer", "null"]},
+          "issues": {"type": "array", "items": {"type": "string"}},
+          "vectors": {"type": "array"}
+        }
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "required": ["probes_run", "probes_valid", "all_valid", "total_vectors"],
+      "properties": {
+        "probes_run": {"type": "integer"},
+        "probes_valid": {"type": "integer"},
+        "probes_failed": {"type": "integer"},
+        "all_valid": {"type": "boolean"},
+        "total_vectors": {"type": "integer"}
+      }
+    },
+    "toolchain": {"type": "object"},
+    "tool_versions": {"type": "object"},
+    "host": {"type": "object"},
+    "repo": {"type": "object"}
+  }
+}

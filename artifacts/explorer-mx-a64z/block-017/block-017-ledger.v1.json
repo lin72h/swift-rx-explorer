@@ -1,0 +1,56 @@
+{
+  "schema": "sx-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "block": "block-017",
+  "created_at_utc": "2026-06-20T18:50Z",
+  "mode": "explorer",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "sx-r64z / mx-a64z",
+  "lane": "A",
+  "outcome": "reference-captured (seed batch)",
+  "scope_note": "No block-017 spec was provided (unlike 018/021). Explorer defined the scope: stand up the Lane A probe pipeline + a seed batch of macOS-27 Swift 6.4 substrate behavior vectors. Tight, redirectable; harness is reusable for future probes.",
+  "repo": {"path": "/Users/linz/Local/swift-rx/swift-rx-explorer", "head": "(block-017 commit; see commits)", "dirty": false},
+  "toolchain": {
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.20.104), target arm64-apple-macosx27.0.0",
+    "swift_sha256": "2b8614a533f97a45159aa9fbccdbc8dcde8b5e37e2c6c3eeb9684d87365deb57"
+  },
+  "pipeline": {
+    "harness": "scripts/run_lane_a_probes.zsh (sha256 5bca21c3...f7054644) — thin orchestration: compile+run each probe with Swift 6.4, capture raw JSON + rc + stderr + invocation. JSON assembly delegated to the validator (shell must not own it).",
+    "validator": "tools/parse_swift_probe_vectors.exs (sha256 41b91f44...4665c3d) — reads per-probe raw JSON, validates structure, emits sx-r64z.lane-a-vectors.v1. --self-test negative controls.",
+    "probes": [
+      {"name": "type_layout.swift", "sha256": "18e299a88489520db88852d1d4bc721b57ea4561191520c3762c974b8012c586", "vectors": 20, "captures": "MemoryLayout size/stride/alignment for 20 Swift types (ABI parity)"},
+      {"name": "integer_overflow.swift", "sha256": "f5f4f7a636e41df0e207f6a61b5d2f34bd66f1ea33e4f31aa9edb1f3c4a946d9", "vectors": 5, "captures": "addingReportingOverflow checked/wrapped overflow semantics"}
+    ]
+  },
+  "negative_controls": {
+    "evidence": "artifacts/explorer-mx-a64z/block-017/negative-controls/parse-swift-probe-vectors.negative-controls.v1.json",
+    "sha256": "fdba95bae6d67362a096c5772c123da7b8d3dd5a5ee4df07849912b57260782d",
+    "cases": ["good_well_formed", "vector_count_mismatch_fails_closed", "missing_required_key_fails_closed", "unknown_probe_id_fails_closed", "json_parse_error_fails_closed"],
+    "passed": true
+  },
+  "captured_reference": {
+    "artifact": "artifacts/explorer-mx-a64z/block-017/lane-a-run/lane-a-vectors.v1.json",
+    "sha256": "f60f935803b8d9486ec3cb0e5322e73883a7741e37bbe88cc355e3b34223f8a0",
+    "all_valid": true,
+    "probes_valid": "2/2",
+    "total_vectors": 25,
+    "sample_vectors_arm64": {
+      "Int": "size=8 stride=8 align=8",
+      "String": "size=16 stride=16 align=8",
+      "Optional<Int>": "size=9 stride=16 align=8",
+      "Empty(struct)": "size=0 stride=1 align=1",
+      "Int.max +&+ 1": "checked_overflow=true wrapped=-9223372036854775808"
+    }
+  },
+  "observations": [
+    "Probes are deterministic and sub-second (no hang surface); the external watchdog is not required for Lane A, unlike the lit/swift-testing suites.",
+    "Initial Swift compile errors (enum 'case a,b,case c'; addingReportingOverflow returns (partialValue:,overflow:); no negatedReportingOverflow) were caught by the harness per-probe rc+stderr and fixed before capture — the pipeline's fail-closed worked.",
+    "25 stable macOS-27 arm64 Swift 6.4 substrate vectors captured. A future regression run diffs these; any size/stride/alignment or overflow-semantics change is a parity regression."
+  ],
+  "deferred": [
+    "Regression diff for probe vectors (compare future run vs this reference; analogous to swift-testing baseline).",
+    "Expand the probe set: runtime/metadata, String/Character internals, concurrency/atomic layout (Lane B is concurrency/XPC, gated).",
+    "Merge explorer-mx-a64z branches (swift-testing + lane-a) to main / open PRs."
+  ],
+  "never_dispositioned": true
+}

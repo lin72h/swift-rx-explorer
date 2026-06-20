@@ -27,3 +27,7 @@ Changelog:
   Parser/producer output for `swift test` native (✔/✘/➜) output, plus the
   derived regression baseline. Pending gatekeeper ratification; additive,
   no change to existing v1 schemas.
+- `sx-r64z-lane-a-vectors.v1`: proposed by explorer-mx-a64z (block-017) for
+  Lane A substrate behavior probe vectors (ABI/runtime/stdlib). Producer
+  output assembled by parse_swift_probe_vectors.exs. Pending gatekeeper
+  ratification; additive.
