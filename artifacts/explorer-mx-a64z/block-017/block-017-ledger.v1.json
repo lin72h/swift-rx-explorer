@@ -1,11 +1,11 @@
 {
-  "schema": "sx-r64z.ledger.v1",
+  "schema": "swift-r64z.ledger.v1",
   "artifact_kind": "provenance",
   "block": "block-017",
   "created_at_utc": "2026-06-20T18:50Z",
   "mode": "explorer",
   "deployment": "swift-rx-explorer-mx-a64z",
-  "namespace": "sx-r64z / mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
   "lane": "A",
   "outcome": "reference-captured (seed batch)",
   "scope_note": "No block-017 spec was provided (unlike 018/021). Explorer defined the scope: stand up the Lane A probe pipeline + a seed batch of macOS-27 Swift 6.4 substrate behavior vectors. Tight, redirectable; harness is reusable for future probes.",
@@ -16,7 +16,7 @@
   },
   "pipeline": {
     "harness": "scripts/run_lane_a_probes.zsh (sha256 5bca21c3...f7054644) — thin orchestration: compile+run each probe with Swift 6.4, capture raw JSON + rc + stderr + invocation. JSON assembly delegated to the validator (shell must not own it).",
-    "validator": "tools/parse_swift_probe_vectors.exs (sha256 41b91f44...4665c3d) — reads per-probe raw JSON, validates structure, emits sx-r64z.lane-a-vectors.v1. --self-test negative controls.",
+    "validator": "tools/parse_swift_probe_vectors.exs (sha256 c8097351...0656d5e4) — reads per-probe raw JSON, validates structure, emits swift-r64z.lane-a-vectors.v1. --self-test negative controls.",
     "probes": [
       {"name": "type_layout.swift", "sha256": "18e299a88489520db88852d1d4bc721b57ea4561191520c3762c974b8012c586", "vectors": 20, "captures": "MemoryLayout size/stride/alignment for 20 Swift types (ABI parity)"},
       {"name": "integer_overflow.swift", "sha256": "f5f4f7a636e41df0e207f6a61b5d2f34bd66f1ea33e4f31aa9edb1f3c4a946d9", "vectors": 5, "captures": "addingReportingOverflow checked/wrapped overflow semantics"}
@@ -24,13 +24,13 @@
   },
   "negative_controls": {
     "evidence": "artifacts/explorer-mx-a64z/block-017/negative-controls/parse-swift-probe-vectors.negative-controls.v1.json",
-    "sha256": "fdba95bae6d67362a096c5772c123da7b8d3dd5a5ee4df07849912b57260782d",
+    "sha256": "a349fcfca9e0d348741fef638ffea07b9b67c755ca33a2f951cb84038d890b79",
     "cases": ["good_well_formed", "vector_count_mismatch_fails_closed", "missing_required_key_fails_closed", "unknown_probe_id_fails_closed", "json_parse_error_fails_closed"],
     "passed": true
   },
   "captured_reference": {
     "artifact": "artifacts/explorer-mx-a64z/block-017/lane-a-run/lane-a-vectors.v1.json",
-    "sha256": "f60f935803b8d9486ec3cb0e5322e73883a7741e37bbe88cc355e3b34223f8a0",
+    "sha256": "108c32e86f6fcfb4a471c7d2093dac679820b04a893da36b537f37517af5a3c1",
     "all_valid": true,
     "probes_valid": "2/2",
     "total_vectors": 25,

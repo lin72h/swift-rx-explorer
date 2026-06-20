@@ -1,8 +1,8 @@
 #!/usr/bin/env elixir
 #
-# Lane A probe-vector validator (sx-r64z). Reads the per-probe *.raw.json outputs
+# Lane A probe-vector validator (swift-r64z). Reads the per-probe *.raw.json outputs
 # captured by run_lane_a_probes.zsh, validates each vector set's structure, and
-# emits a single provenance-enveloped sx-r64z artifact (proper JSON assembly —
+# emits a single provenance-enveloped swift-r64z artifact (proper JSON assembly —
 # shell only orchestrates). Fail-closed: a probe whose output is missing, not
 # JSON, has a vector_count mismatch, lacks a required key, or has an unknown
 # probe_id is marked valid=false; the aggregate all_valid reflects any failure.
@@ -51,12 +51,12 @@ defmodule SwiftGate.ParseProbeVectors do
       probes |> Enum.filter(& &1["valid"]) |> Enum.map(& &1["vector_count"]) |> Enum.sum()
 
     %{
-      "schema" => "sx-r64z.lane-a-vectors.v1",
+      "schema" => "swift-r64z.lane-a-vectors.v1",
       "artifact_kind" => "validation",
       "disposition_authority" => "none — raw-fact producer output; not a gatekeeper disposition",
       "created_at_utc" => utc_now(),
       "mode" => Map.get(opts, "--mode", "explorer"),
-      "namespace" => "sx-r64z / mx-a64z",
+      "namespace" => "swift-r64z / mx-a64z",
       "lane" => "A",
       "run_dir" => run_dir,
       "repo" => repo_info(),

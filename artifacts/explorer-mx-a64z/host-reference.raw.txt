@@ -1,7 +1,7 @@
 # mx-a64z host + toolchain reference — raw evidence (immutable primary)
 # Captured by: swift-rx-explorer (explorer, mode=reference-capture, no disposition)
 # Captured at (UTC): 2026-06-20T01:40Z
-# Host namespace: mx-a64z   Contract namespace: sx-r64z
+# Host namespace: mx-a64z   Contract namespace: swift-r64z
 # Repo head: 567a0538bff45d443f8bd29316cf2bafffdd0fb1   dirty: false
 
 ## host identity

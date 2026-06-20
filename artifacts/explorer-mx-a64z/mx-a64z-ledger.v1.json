@@ -1,10 +1,10 @@
 {
-  "schema": "sx-r64z.ledger.v1",
+  "schema": "swift-r64z.ledger.v1",
   "artifact_kind": "provenance",
   "created_at_utc": "2026-06-20T01:41Z",
   "mode": "explorer",
   "host_ns": "mx-a64z",
-  "contract_ns": "sx-r64z",
+  "contract_ns": "swift-r64z",
   "deployment": "swift-rx-explorer-mx-a64z",
   "iteration": "block-000-first-iteration",
   "repo": {
