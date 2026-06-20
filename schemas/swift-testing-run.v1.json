@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://swift-rx/schemas/swift-testing-run.v1.json",
+  "title": "swift-testing run (swift-testing dimension)",
+  "description": "Parsed output of `swift test` for an apple/swift-testing package. Native ✔/✘/➜ output, NOT lit. Producer output (unknown fields allowed); not a gatekeeper disposition. Proposed by explorer-mx-a64z for the swift-testing dimension; pending gatekeeper ratification.",
+  "type": "object",
+  "required": ["schema", "artifact_kind", "created_at_utc", "mode", "tier", "run", "accounting", "status_observation", "tests"],
+  "properties": {
+    "schema": {"type": "string", "const": "swift-testing-run.v1"},
+    "artifact_kind": {"type": "string", "const": "validation"},
+    "disposition_authority": {"type": "string"},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "mode": {"type": "string", "enum": ["explorer", "gatekeeper"]},
+    "tier": {"type": "string", "const": "swift-testing"},
+    "run": {
+      "type": "object",
+      "required": ["id", "accounting_present", "complete_pass_set_proven", "attempt_consumed"],
+      "properties": {
+        "id": {"type": "string"},
+        "accounting_present": {"type": "boolean"},
+        "complete_pass_set_proven": {"type": "boolean"},
+        "return_code": {"type": ["integer", "null"]},
+        "attempt_consumed": {"type": "boolean"}
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "properties": {
+        "total": {"type": ["integer", "null"], "description": "Sum of 'Test run with N tests' across runs; line granularity (not case-expanded)."},
+        "suites": {"type": ["integer", "null"]},
+        "aggregate_result": {"type": ["string", "null"], "enum": ["passed", "failed", null]},
+        "runs": {"type": "array"}
+      }
+    },
+    "status_observation": {
+      "type": "object",
+      "required": ["complete_pass_set_proven", "test_counts_match_accounting", "suite_counts_match_accounting", "result_consistent"],
+      "properties": {
+        "observed_test_total": {"type": "integer"},
+        "accounted_test_total": {"type": ["integer", "null"]},
+        "test_counts_match_accounting": {"type": "boolean"},
+        "suite_counts_match_accounting": {"type": "boolean"},
+        "result_consistent": {"type": "boolean"},
+        "complete_pass_set_proven": {"type": "boolean", "description": "accounting_present AND test counts match AND suite counts match AND result consistent."}
+      }
+    },
+    "tests": {
+      "type": "object",
+      "description": "Deduped, sorted name lists. Shape matches diff_swift_regression expectations; skipped (➜) -> 'unsupported'.",
+      "required": ["passed", "failed", "unsupported", "hung", "expectedly_failed", "unexpectedly_passed"],
+      "properties": {
+        "passed": {"type": "array", "items": {"type": "string"}},
+        "failed": {"type": "array", "items": {"type": "string"}},
+        "unsupported": {"type": "array", "items": {"type": "string"}, "description": "skipped/cancelled tests (➜)."},
+        "hung": {"type": "array", "items": {"type": "string"}},
+        "expectedly_failed": {"type": "array", "items": {"type": "string"}},
+        "unexpectedly_passed": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "suites": {"type": "object"},
+    "status_counts_observed": {"type": "object"},
+    "toolchain": {"type": "object"},
+    "tool_versions": {"type": "object"},
+    "inputs": {"type": "array"},
+    "raw_digest": {"type": "object"},
+    "repo": {"type": "object"},
+    "source": {"type": "object"},
+    "host": {"type": "object"}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://swift-rx/schemas/swift-testing-baseline.v1.json",
+  "title": "swift-testing regression baseline (swift-testing dimension)",
+  "description": "An accept-grade-eligible regression baseline derived from a swift-testing-run.v1. Diffable via diff_swift_regression.exs (carries the same `tests` shape). provisional=false once negative controls are proven. Proposed by explorer-mx-a64z; pending gatekeeper ratification. Explorer does not dispose; 'accept_grade_eligible' means it meets the evidentiary bar, not that it is accepted.",
+  "type": "object",
+  "required": ["schema", "artifact_kind", "created_at_utc", "mode", "tier", "baseline", "tests", "status_observation"],
+  "properties": {
+    "schema": {"type": "string", "const": "swift-testing-baseline.v1"},
+    "artifact_kind": {"type": "string", "const": "validation"},
+    "disposition_authority": {"type": "string"},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "mode": {"type": "string", "enum": ["explorer", "gatekeeper"]},
+    "tier": {"type": "string", "const": "swift-testing"},
+    "baseline": {
+      "type": "object",
+      "required": ["provisional", "source_run_json", "source_run_json_sha256", "expected_failures", "expected_skipped", "accept_grade_eligible", "negative_control_proven"],
+      "properties": {
+        "provisional": {"type": "boolean"},
+        "accept_grade_eligible": {"type": "boolean"},
+        "negative_control_proven": {"type": "boolean", "description": "True iff parser --self-test passed AND diff red-path controls fail closed."},
+        "source_run_json": {"type": "string"},
+        "source_run_json_sha256": {"type": "string"},
+        "expected_failures": {"type": "array", "items": {"type": "string"}},
+        "expected_skipped": {"type": "array", "items": {"type": "string"}},
+        "waivers": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "tests": {"type": "object"},
+    "suites": {"type": "object"},
+    "accounting": {"type": "object"},
+    "status_observation": {"type": "object"},
+    "source": {"type": "object"},
+    "toolchain": {"type": "object"},
+    "tool_versions": {"type": "object"},
+    "host": {"type": "object"},
+    "repo": {"type": "object"},
+    "inputs": {"type": "array"}
+  }
+}

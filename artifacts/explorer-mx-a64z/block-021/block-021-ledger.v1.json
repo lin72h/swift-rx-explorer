@@ -1,0 +1,77 @@
+{
+  "schema": "swift-r64z.ledger.v1",
+  "artifact_kind": "provenance",
+  "block": "block-021",
+  "created_at_utc": "2026-06-20T06:35Z",
+  "mode": "explorer",
+  "deployment": "swift-rx-explorer-mx-a64z",
+  "namespace": "swift-r64z / mx-a64z",
+  "outcome": "reference-captured (accept-grade)",
+  "dimension": "swift-testing",
+  "repo": {
+    "path": "/Users/linz/Local/swift-rx/swift-rx-explorer",
+    "head": "(block-021 commit; see commits field)",
+    "dirty": false
+  },
+  "toolchain": {
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.20.104), target arm64-apple-macosx27.0.0",
+    "testing_library_version": "6.5-dev (4b2d2945d2072a5)"
+  },
+  "ledger_chain": {
+    "swift-testing": "swift-testing-suite -> regression-baseline(accept-grade) -> reference-captured",
+    "status": "complete for the swift-testing dimension"
+  },
+  "new_tools": {
+    "parse_swift_testing.exs": {
+      "sha256": "52673f6effb21012b55d21f155556fd45d72bf8971d233004dc5d6cc65914441",
+      "job": "parse swift-testing native output (✔/✘/➜) -> swift-testing-run.v1; --self-test mode",
+      "note": "net-new; the lit parser does NOT handle ✔/✘ output"
+    },
+    "make_swift_testing_baseline.exs": {
+      "job": "swift-testing-run.v1 -> swift-testing-baseline.v1; accept_grade_eligible only when NC evidence proves fail-closed"
+    }
+  },
+  "new_schemas": [
+    "schemas/swift-testing-run.v1.json",
+    "schemas/swift-testing-baseline.v1.json"
+  ],
+  "negative_controls": {
+    "parser_self_test": {
+      "evidence": "artifacts/explorer-mx-a64z/block-021/negative-controls/parse-swift-testing.negative-controls.v1.json",
+      "sha256": "9813a6e7cf37fc34e0f818772a97ad7d79a0500360b269dd311fac49f76ee240",
+      "cases": ["good_accounting_consistent", "skipped_mapped_to_unsupported", "failure_recorded_and_summary_failed", "passed_but_failure_observed_fails_closed", "test_count_delta_fails_closed", "missing_accounting_not_synthesized"],
+      "passed": true
+    },
+    "diff_red_paths": {
+      "evidence": "artifacts/explorer-mx-a64z/block-021/negative-controls/diff-swift-testing.negative-controls.v1.json",
+      "sha256": "37436a5653c940a854bdf24f26e6fecf6a13be2ed77615718ef80632fa3fbdba",
+      "red_paths": {"passed_to_failed": "fail", "missing_test": "fail", "passed_to_unsupported": "fail"},
+      "green_identical": "pass",
+      "passed": true
+    }
+  },
+  "accept_grade_baseline": {
+    "path": "artifacts/explorer-mx-a64z/block-021/swift-testing-baseline.v1.json",
+    "sha256": "56c290fc9023561bb0a7162a45872da4078ba1a739eb09b98fef86ce4229ba00",
+    "provisional": false,
+    "accept_grade_eligible": true,
+    "negative_control_proven": true,
+    "expected_passed_count": 579,
+    "expected_failures": 0,
+    "expected_skipped": 4,
+    "diffable": "diff_swift_regression.exs baseline-vs-source -> pass (exit 0)",
+    "source_run": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing-run.v1.json (sha256 f2bcf6e3...f0b80b)"
+  },
+  "supersedes": "artifacts/explorer-mx-a64z/block-018/swift-testing-run/swift-testing-reference.v1.json (provisional reference)",
+  "observations": [
+    "swift-testing 'Test run with N tests' counts at line granularity, NOT case-expanded (empirically: 546 passed-lines + 4 skipped-lines = 550 for run 1). Parser's count invariant uses raw event counts; the `tests` lists are deduped (579 unique vs 587 raw, because some test names repeat across suites) purely for stable diff keys.",
+    "skipped/cancelled tests (➜) map to 'unsupported' so the accepted diff_swift_regression semantics apply (passed->skipped = coverage-loss regression).",
+    "Explorer marks accept_grade_eligible; no gatekeeper acceptance is synthesized."
+  ],
+  "never_dispositioned": true,
+  "deferred": [
+    "Compiler lit suite (build-script -T / check-swift-macos-arm64): still blocked (no Swift source tree on mm4).",
+    "Formal JSON-Schema validation of artifacts against the new schema files (schemas proposed, pending gatekeeper ratification).",
+    "Lane A behavior probes (block-017)."
+  ]
+}

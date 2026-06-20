@@ -22,3 +22,8 @@ Unknown-field policy:
 Changelog:
 
 - `v1`: initial Gatekeeper testing-strategy schema namespace.
+- `swift-testing-run.v1` / `swift-testing-baseline.v1`: proposed by
+  explorer-mx-a64z (block-021) for the swift-testing corelibs dimension.
+  Parser/producer output for `swift test` native (✔/✘/➜) output, plus the
+  derived regression baseline. Pending gatekeeper ratification; additive,
+  no change to existing v1 schemas.

@@ -1,0 +1,39 @@
+{
+  "schema": "negative-controls.v1",
+  "artifact_kind": "negative_controls",
+  "created_at_utc": "2026-06-20T06:32:05Z",
+  "mode": "explorer",
+  "validator": "diff_swift_regression.exs (swift-testing dimension)",
+  "validator_pin": "a800be97d1ea466d1950930737b3f4cc22cc9868f50a3ea401a3b224f3481cef",
+  "cases": [
+    {
+      "id": "diff_red_A_passed_to_failed",
+      "mutation": "fabricated passed_to_failed",
+      "expected": "fail",
+      "actual": "fail",
+      "passed": true
+    },
+    {
+      "id": "diff_red_B_missing_test",
+      "mutation": "fabricated missing_test",
+      "expected": "fail",
+      "actual": "fail",
+      "passed": true
+    },
+    {
+      "id": "diff_red_C_passed_to_unsupported",
+      "mutation": "fabricated passed_to_unsupported",
+      "expected": "fail",
+      "actual": "fail",
+      "passed": true
+    },
+    {
+      "id": "diff_green_identical",
+      "mutation": "none",
+      "expected": "pass",
+      "actual": "pass",
+      "passed": true
+    }
+  ],
+  "passed": true
+}
