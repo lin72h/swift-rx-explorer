@@ -1,0 +1,11 @@
+--- /Volumes/MM4-1T/Local/swift-rx/swift-sdk-op-233/results/src/swift-corelibs-libdispatch-swift-6.4.0-RELEASE/tests/dispatch_test.h	2026-05-01 14:25:26
++++ /Volumes/MM4-1T/Local/swift-rx/swift-sdk-op-233/results-id-011-followup/ported-tests/dispatch_test.h	2026-10-30 15:04:09
+@@ -54,7 +54,7 @@
+ 
+ #if __APPLE__
+ int sysctlbyname(const char *name, void *oldp, size_t *oldlenp, void *newp,
+-		size_t *newpl);
++		size_t newlen);
+ #endif
+ 
+ dispatch_fd_t dispatch_test_fd_open(const char *path, int flags);

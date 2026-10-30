@@ -132,6 +132,7 @@ defmodule SwiftGate.SummarizeOp236 do
   def verdict(name, _m, _r) when name in @support, do: "harness/support file, not a test"
   def verdict(_n, "no_build", "not_registered"), do: "unsupported on both (macOS: no build; rmxOS: not registered)"
   def verdict(_n, "no_build", _r), do: "no macOS result (does not build against the public SDK)"
+  def verdict(_n, nil, _r), do: "no macOS result (built, not run)"
   def verdict(_n, "pass", "pass"), do: "same"
   def verdict(_n, "pass", "not_registered"), do: "rmxOS differs (macOS passes; not registered on rmxOS)"
   def verdict(_n, "pass", "fail"), do: "rmxOS differs"
@@ -209,6 +210,7 @@ defmodule SwiftGate.SummarizeOp236 do
     mk.("dispatch_vm", 1, [])
     mk.("dispatch_proc", 0, List.duplicate({0, ok}, 5))
     mk.("dispatch_cascade", 0, List.duplicate({1, ok}, 5))     # nonzero exit, no [FAIL]
+    mk.("dispatch_deadname", 0, [])                            # built, deliberately not run
     mk.("dispatch_thread_name", 0, List.duplicate({255, bad}, 5)) # exit(-1) is not a signal
 
     got = summarize(logs) |> Map.new(&{&1["name"], &1})
@@ -226,6 +228,7 @@ defmodule SwiftGate.SummarizeOp236 do
       {"nonzero_exit_is_fail", got["dispatch_cascade"]["macos"], "fail"},
       {"rc255_is_exit_not_signal", got["dispatch_thread_name"]["macos"], "fail"},
       {"rc255_no_signal", hd(got["dispatch_thread_name"]["runs"])["signal"], nil},
+      {"built_not_run_is_no_result", got["dispatch_deadname"]["verdict"], "no macOS result (built, not run)"},
       {"rmx_fail_vs_mac_fail_same", verdict("x", "fail", "fail"), "same (fails on both)"}
     ]
 

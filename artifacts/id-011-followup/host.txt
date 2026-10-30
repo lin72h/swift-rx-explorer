@@ -1,0 +1,24 @@
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B123
+
+swift-driver version: 1.168.6 Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)
+Target: arm64-apple-macosx27.2.0
+
+Apple clang version 21.0.0 (clang-2100.3.34.2)
+Target: arm64-apple-darwin27.2.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+Darwin mm4.local 27.2.0 Darwin Kernel Version 27.2.0: Wed Oct 14 23:47:07 PDT 2026; root:xnu-13432.41.4~25/RELEASE_ARM64_T8132 arm64
+Xcode 27.1
+Build version 27A9275
+
+hw.ncpu=10 hw.activecpu=10 perflevel0=4 perflevel1=6 hw.memsize=17179869184
+system libdispatch: 1605.40.4 (NSVersionOfRunTimeLibrary("dispatch")), dyld shared cache
+load average at start 2026-10-30T01:57:31Z: 7.64 7.55 5.05 (shared host)
+
+SwiftPM: swift-6.4.0-RELEASE 18da3eb1e770679f6910890fbd52e95af53f67d2
+Apple libdispatch headers: libdispatch-1542.100.32 tag object 864af86588ec6acda18662e36c09e812ff679ad4 -> commit 701f4d1a24ae9c6863901bbbb22624b7d1b87321
+corelibs tests: af15fcc3da4514def6454ed672b82daa9ac1d40cb1d08fb69a6611cb8fc104c6  /Volumes/MM4-1T/Local/swift-rx/swift-sdk-op-233/swiftlang-swift-corelibs-libdispatch-swift-6.4.0-RELEASE_GH0.tar.gz
+2026-10-30T02:26:28Z
