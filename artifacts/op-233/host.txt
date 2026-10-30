@@ -1,0 +1,20 @@
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B123
+
+swift-driver version: 1.168.6 Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)
+Target: arm64-apple-macosx27.2.0
+
+Apple clang version 21.0.0 (clang-2100.3.34.2)
+Target: arm64-apple-darwin27.2.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+Darwin mm4.local 27.2.0 Darwin Kernel Version 27.2.0: Wed Oct 14 23:47:07 PDT 2026; root:xnu-13432.41.4~25/RELEASE_ARM64_T8132 arm64
+
+/Applications/Xcode.app/Contents/Developer
+Xcode 27.1
+Build version 27A9275
+
+shasum: /usr/lib/system/libdispatch.dylib: No such file or directory
+2026-10-30T00:02:17Z
